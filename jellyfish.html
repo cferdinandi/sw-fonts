@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Service Worker Demo</title>
+
+	<style type="text/css">
+		body {
+			font-family: "PT Serif", serif;
+			margin: 0 auto;
+			max-width: 40em;
+			width: 88%;
+		}
+
+		img {
+			height: auto;
+			max-width: 100%;
+		}
+	</style>
+
+	<link rel="stylesheet" href="css/fonts.css" media="print" onload="this.media='all'; this.onload=null;">
+</head>
+<body>
+
+	<h1>Jellyfish</h1>
+
+	<p>Jellyfish are pretty cool, too. Check out these beauties.</p>
+
+	<p><img alt="Three jellyfish in a rainbow of colors floating underwater" src="img/jellyfish.jpg"></p>
+
+
+	<script>
+		// Initialize the service worker
+		if (navigator && navigator.serviceWorker) {
+			navigator.serviceWorker.register('sw.js');
+		}
+	</script>
+
+</body>
+</html>

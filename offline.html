@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Service Worker Demo</title>
+
+	<style type="text/css">
+		body {
+			font-family: "PT Serif", serif;
+			margin: 0 auto;
+			max-width: 40em;
+			width: 88%;
+		}
+
+		img {
+			height: auto;
+			max-width: 100%;
+		}
+	</style>
+
+	<link rel="stylesheet" href="css/fonts.css" media="print" onload="this.media='all'; this.onload=null;">
+</head>
+<body>
+
+	<h1>Offline</h1>
+
+	<p>On no, you're not online! Don't worry. You can visit any pages you've already been to.</p>
+
+	<div data-offline></div>
+
+
+	<script>
+		if (navigator && navigator.serviceWorker) {
+			caches.open('pages').then(function (cache) {
+				cache.keys().then(function (keys) {
+					var offline = document.querySelector('[data-offline]');
+					offline.innerHTML =
+						'<ul>' +
+							keys.map(function(key) {
+								return '<li><a href="' + key.url + '">' + key.url + '</a></li>';
+							}).join('') +
+						'</ul>';
+				});
+			});
+		}
+	</script>
+
+</body>
+</html>
